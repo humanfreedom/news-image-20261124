@@ -495,13 +495,19 @@ function storyBlock(s: Story, bx: number, by: number): void {
   if (fn) fn(bx + Math.round((COLW - 122) / 2), by + 192);
 }
 
+// Double rule under the masthead: a thick black bar with a thin red bar
+// beneath it, separating the masthead from the news rows.
+function drawDoubleRule(y: number): void {
+  rect(MX, y, CW, 3, INK);
+  rect(MX, y + 7, CW, 2, RED);
+}
+
 function drawPage(): void {
   // Masthead.
   textC("THE WORLD IN ONE DAY", W / 2, 34, 4, INK);
   textC("TUESDAY 24 NOVEMBER 2026", W / 2, 74, 6, INK);
-  // Rules under the masthead.
-  rect(MX, 130, CW, 6, RED);
-  rect(MX, 140, CW, 2, INK);
+  // Double rule under the masthead.
+  drawDoubleRule(130);
   // Six stories: 2 columns x 3 rows.
   for (let i = 0; i < STORIES.length; i++) {
     const col = i % 2;
